@@ -9,9 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+*/ 	
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
-Route::post('info', 'ValidateController@bum')->name('vali');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

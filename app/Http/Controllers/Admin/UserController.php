@@ -11,6 +11,10 @@ use Session;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,35 +22,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('admin.user.index')->with('users',$users);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.user.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show($user)
@@ -94,7 +76,7 @@ class UserController extends Controller
             $user->save();
 
             // redirect
-            return Redirect::to('admin/users/' . $user->id);
+            return Redirect::to('admin/users/');
         }
 
     }

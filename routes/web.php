@@ -24,6 +24,8 @@ Route::prefix('admin')->group(function(){
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-  Route::resource('/users', 'Admin\UserController');
+  Route::resource('/users', 'Admin\UserController',['except'=>['store','create']]);
+  Route::resource('/categories', 'Admin\CategoryController');
+  Route::resource('/products', 'Admin\ProductController');
 });
 

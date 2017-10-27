@@ -1,23 +1,31 @@
 @extends('admin')
 
+@section('header-title')
+  <section class="content-header">
+      <h1>
+        Category Management
+        <small>Category Edit</small>
+      </h1>
+    </section>
+@endsection
+
 @section('content')
-	<h1>Edit</h1>
-	<div class="box box-primary">
+  <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title"> {{ $user->name }}'s infomations</h3>
-      <a href="{{ route('users.index') }}" role="button" class="pull-right btn btn-warning">Back to User List</a>
+      <h3 class="box-title">Edit: {{$category->name}}</h3>
+      <a href="{{ route('categories.index') }}" role="button" class="pull-right btn btn-warning">Back to Category List</a>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT', 'class' =>'edit')) }}
+    {{ Form::model($category, array('route' => array('categories.update', $category->id), 'method' => 'PUT', 'class' =>'edit')) }}
       <div class="box-body">
         <div class="form-group">
           <label>Name:</label>
           {{ Form::text('name', null, array('class' => 'form-control')) }}
         </div>
         <div class="form-group"> 
-          <label>Email address:</label>
-          {{ Form::email('email', null, array('class' => 'form-control')) }}
+          <label>Description:</label>
+          {{ Form::textarea('description', null, array('class' => 'form-control')) }}
         </div>
       </div>
       <!-- /.box-body -->
@@ -33,7 +41,7 @@
   @parent
   <script>
     $(".edit").on("submit", function(){
-        return confirm("Edit user?");
+        return confirm("Edit category?");
     });
   </script>
 @endsection

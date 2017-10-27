@@ -13,12 +13,10 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
-    static $password;
-
+$factory->define(App\Order::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'user_id' => $faker->numberBetween($min = 1, $max = 20),
+        'description' => $faker->sentence,
+        'status' => $faker->randomElement(['new','checkouted','deliver']),
     ];
 });

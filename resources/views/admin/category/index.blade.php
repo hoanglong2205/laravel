@@ -7,8 +7,8 @@
 @section('header-title')
 	<section class="content-header">
       <h1>
-        User Management
-        <small>Users List</small>
+        Category Management
+        <small>Categories List</small>
       </h1>
     </section>
 @endsection
@@ -16,7 +16,10 @@
 @section('content')
 	<div class="box">
         <div class="box-header">
-          <h3 class="box-title">Users List</h3>
+          <h3 class="box-title">Categories List</h3>
+          <div class="pull-right">
+            <a href="{{route('categories.create')}}" role="button" class="btn btn-primary">Create new Category</a>
+          </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -25,19 +28,19 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Description</th>
               <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($users as $user)
+            @foreach ($categories as $category)
             <tr>
-              <td>{{$user->id}}</td>
-              <td><a href="{{route('users.show',['id'=>$user->id])}}">{{$user->name}}</a></td>
-              <td>{{$user->email}}</td>
+              <td>{{$category->id}}</td>
+              <td>{{$category->name}}</td>
+              <td>{{$category->description}}</td>
               <td>
-              	<form class="delete" action="{{ route('users.destroy', $user->id) }}" method="POST">
-                  <a href="{{route('users.edit',['id'=>$user->id])}}" role="button" class="btn btn-primary">Edit</a>
+              	<form class="delete" action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                  <a href="{{route('categories.edit',['id'=>$category->id])}}" role="button" class="btn btn-primary">Edit</a>
                   <input type="hidden" name="_method" value="DELETE">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                   <input type="submit" value="Delete" class="btn btn-danger">
@@ -49,7 +52,7 @@
            </table>
            <div class="row">
             <div class="text-center">
-              {{$users->links()}}
+              {{$categories->links()}}
             </div>
            </div>
         </div>

@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('description');
-            $table->enum('status',['new','checkouted','deliver']);
+            $table->enum('status',['new','checkouted','delivered','canceled']);
             $table->timestamps();
         });
     }

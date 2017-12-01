@@ -63,7 +63,7 @@ class ProductController extends Controller
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image)->resize(400, 200)->save($location);
+            Image::make($image)->resize(200, 100)->save($location);
             $product->image = $filename;
         }
 
@@ -131,7 +131,7 @@ class ProductController extends Controller
                 $image = $request->file('image');
                 $filename = time() . '.' . $image->getClientOriginalExtension();
                 $location = public_path('images/' . $filename);
-                Image::make($image)->resize(400, 200)->save($location);
+                Image::make($image)->resize(200, 100)->save($location);
                 $oldFilename = $product->image;
 
                 $product->image = $filename;

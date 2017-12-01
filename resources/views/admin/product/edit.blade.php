@@ -17,7 +17,7 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    {{ Form::model($product, array('route' => array('products.update', $product->id), 'method' => 'PUT','files'=>true)) }}
+    {{ Form::model($product, array('route' => array('products.update', $product->id), 'method' => 'PUT','files'=>true, 'class' => 'edit')) }}
       <div class="box-body">
         <div class="form-group">
           <label>Name:</label>
@@ -39,7 +39,7 @@
 
         <div class="form-group">
           <label>Update Product's image:</label></br>
-          <img id="output_image" src="{{asset('images/' . $product->image)}}" border="0" height="real_height" width="real_width" onload="resizeImg(this, 200, 400);">
+          <img id="output_image" src="{{asset('images/' . $product->image)}}" border="0" height="real_height" width="real_width" onload="resizeImg(this, 100, 200);">
           {{Form::file('image',['onchange' =>'preview_image(event)'])}}
         </div>
 
@@ -68,8 +68,8 @@
     function preview_image(event) 
     {
      var reader = new FileReader();
-     reader.height = '200px';
-     reader.width = '400px';
+     reader.height = '100px';
+     reader.width = '200px';
      reader.onload = function()
      {
       var output = document.getElementById('output_image');

@@ -46,13 +46,13 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        $class = get_class($exception);
+        $class = get_class($e);
 
         switch($class) {
             case 'Illuminate\Auth\AuthenticationException':
-                $guard = array_get($exception->guards(), 0);
+                $guard = array_get($e->guards(), 0);
                 switch ($guard) {
                     case 'admin':
                         $login = 'admin.login';
@@ -64,6 +64,11 @@ class Handler extends ExceptionHandler
 
                 return redirect()->route($login);
         }
-        return parent::render($request, $exception);
+        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } else if ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        }
+        return parent::render($request, $e);
     }
 }

@@ -17,6 +17,6 @@ $factory->define(App\Order::class, function (Faker $faker) {
     return [
         'user_id' => $faker->numberBetween($min = 1, $max = 20),
         'description' => $faker->sentence,
-        'status' => $faker->randomElement(['new','checkouted','deliver']),
+        'status' => $faker->randomElement(['new','checkouted','delivered','canceled']),
     ];
 });

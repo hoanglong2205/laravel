@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/user-details', 'Api\UserController@show');
+Route::post('/login', 'Api\AuthController@authenticate');
+//automatic generate new token
+Route::get('/refresh-token', 'Api\AuthController@refresh');
+
+Route::post('/signup', 'Api\AuthController@register');
+Route::resource('/categories', 'Api\CategoryController', ['only' => ['index','show']]);
+Route::resource('/orders', 'Api\OrderController');

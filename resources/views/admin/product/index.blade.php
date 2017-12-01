@@ -39,7 +39,7 @@
             <tr>
               <td>{{$product->id}}</td>
               <td>{{$product->name}}</td>
-              <td>{{$product->price}}<i class="fa fa-fw fa-dollar"></i></td>
+              <td><i class="fa fa-fw fa-dollar"></i>{{$product->price}}</td>
               <td>{{$product->category->name}}</td>
               <td>{{$product->description}}</td>
               <td>
